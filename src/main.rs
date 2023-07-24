@@ -8,6 +8,7 @@ fn main() {
     for stream in listener.incoming() {
         match stream {
             Ok(mut stream ) => {
+                println!("connected");
                 let mut buf = String::new();
                 stream.read_to_string(&mut buf).unwrap();
                 println!("Recieved {buf}");
