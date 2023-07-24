@@ -6,11 +6,12 @@ fn main() {
     for stream in listener.incoming() {
         match stream {
             Ok(mut stream ) => {
-                println!("Established a new Connection");
-                let input = parse_array(&mut stream);
-                if input[0] == "PING" {
-                    write!(stream, "+PONG\r\n").unwrap();
-                }
+                // println!("Established a new Connection");
+                // let input = parse_array(&mut stream);
+                // if input[0] == "PING" {
+                //     write!(stream, "+PONG\r\n").unwrap();
+                // }
+                write!(stream, "+PONG\r\n").unwrap();
             }
             Err(e) => {
                 println!("error: {}", e);
