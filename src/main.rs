@@ -9,9 +9,9 @@ fn main() {
         match stream {
             Ok(mut stream ) => {
                 println!("connected");
-                let mut buf = String::new();
-                stream.read_to_string(&mut buf).unwrap();
-                println!("Recieved {buf}");
+                let mut buf = [0u8; 4];
+                stream.read_exact(&mut buf);
+                println!("Recieved {}", String::from_utf8(buf.to_vec()).unwrap());
                 println!("accepted new connection");
             }
             Err(e) => {
