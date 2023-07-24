@@ -1,4 +1,4 @@
-use std::net::TcpListener;
+use std::{net::TcpListener, io::Read};
 
 fn main() {
     println!("Logs from your program will appear here!");
@@ -7,7 +7,10 @@ fn main() {
     
     for stream in listener.incoming() {
         match stream {
-            Ok(_stream) => {
+            Ok(mut stream ) => {
+                let mut buf = String::new();
+                stream.read_to_string(&mut buf).unwrap();
+                println!("Recieved {buf}");
                 println!("accepted new connection");
             }
             Err(e) => {
